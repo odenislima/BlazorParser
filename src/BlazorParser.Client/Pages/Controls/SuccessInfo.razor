@@ -1,0 +1,18 @@
+﻿<div id="successInfoPanel" class="alert alert-success" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" @onclick="RaiseCloseAlert">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    @Message    
+</div>
+
+@code {
+
+    [Parameter] public string Message { get; set; }
+
+    [Parameter] public EventCallback<EventArgs> OnClose { get; set; }
+
+    private void RaiseCloseAlert()
+    {
+        OnClose.InvokeAsync(EventArgs.Empty);
+    }
+}

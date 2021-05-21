@@ -1,0 +1,26 @@
+﻿<div id="fileInfoPanel" class="panel panel-default">
+    <div class="panel-heading">File Info</div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Type</th>
+                    <th>Size (MiB)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@FileEntry?.Name</td>
+                    <td>@FileEntry?.Type</td>
+                    <td>@FileEntry?.Size</td>                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+
+    [Parameter] public IFileListEntry FileEntry { get; set; }
+}

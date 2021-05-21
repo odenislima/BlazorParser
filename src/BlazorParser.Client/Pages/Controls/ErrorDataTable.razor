@@ -1,0 +1,35 @@
+﻿
+<table id="errorTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (!HasItems)
+        {
+            <tr>
+                <td colspan="2">No recordds to display</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var forecast in @Errors)
+            {
+                <tr>
+                    <td>@forecast.Error</td>
+                    <td>@forecast.Line</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+
+    [Parameter] public List<ErrorData> Errors { get; set; }
+
+    private bool HasItems => Errors != null || Errors.Any();
+}

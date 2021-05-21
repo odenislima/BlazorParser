@@ -1,0 +1,48 @@
+﻿@page "/"
+
+@using BlazorParser.Client.ViewModels
+@using BlazorParser.Client.Pages.Controls
+
+@inject IEventsViewModel vm
+
+@if (vm.ShowErrorMessage)
+{
+    <ErrorInfo Message="@vm.ErrorMessage" OnClose="vm.CloseErrorMessageHanlder"></ErrorInfo>
+}
+@if (vm.HasFinished && vm.ShowSuccessMessage)
+{
+    <SuccessInfo Message="@vm.SuccessMessage" OnClose="vm.CloseSuccessMessageHanlder"></SuccessInfo>
+}
+
+@if (vm.IsProcessing)
+{
+    <div id="progressingPanel" class="alert alert-success" role="alert">
+        <p><em>Processing.... </em></p>
+    </div>
+}
+else
+{
+    <h3 id="inputPanelTitle">Choose file</h3>
+    <InputFile OnChange="vm.FileSelectedHandler" MaxMessageSize="30000"></InputFile>
+}
+<br />
+<br />
+@if (vm.SelectedFile != null)
+{
+    <FileInfo FileEntry="vm.SelectedFile"></FileInfo>
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Events List</div>
+    <div class="panel-body" style="height: 150px; overflow-y: scroll;">
+        <EventTable Events="vm.Events"></EventTable>
+    </div>
+
+</div>
+
+<div class="panel panel-danger">
+    <div class="panel-heading">Error List</div>
+    <div class="panel-body" style="height: 150px; overflow-y: scroll;">
+        <ErrorDataTable Errors="vm.Errors"></ErrorDataTable>
+    </div>
+</div>
