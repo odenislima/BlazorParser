@@ -1,6 +1,4 @@
-# Blazor Serve App
-
-Parser in Blazor
+# Parser in Blazor Serve App
 
 The main idea is to have a page with text file upload with capability (**files up to 3 MiB**)
 App parses text file with the following structure:
